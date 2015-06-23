@@ -9,13 +9,13 @@ buildscript {
 }
 
 
-apply plugin: 'java'
+apply plugin: 'groovy'
 
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
 jar {
-    baseName = 'SampleMicroservice'
+    baseName = 'sample-microservice'
     version =  '0.1.0'
 }
 
@@ -36,11 +36,12 @@ dependencies {
     
     
     
-    
+    testCompile 'org.codehaus.groovy:groovy-all:2.1.7'
+    testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
 }
 
 task serve(type:Exec){
-    commandLine "java -jar build/libs/SampleMicroservice-0.1.0.jar".split(' ')
+    commandLine "java -jar build/libs/sample-microservice-0.1.0.jar".split(' ')
 }
 
 serve.dependsOn build
