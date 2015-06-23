@@ -5,8 +5,11 @@ buildscript {
     }
     dependencies {
         classpath('org.springframework.boot:spring-boot-gradle-plugin:1.2.4.RELEASE')
+        classpath('se.transmode.gradle:gradle-docker:1.2')
     }
 }
+
+group = 'vspglobal'
 
 
 apply plugin: 'groovy'
@@ -49,4 +52,18 @@ serve.dependsOn build
 
 task (type: Wrapper) {
     gradleVersion = '1.8'
+}
+
+apply plugin: 'docker'
+
+taskb docker(type: Docker, dependsOn: build) {
+    push = false
+    applicationName = jar.baseName
+    dockerfile = file('src/main/docker/Dockerfile')
+    doFirst {
+        copy {
+            from jar
+            into stageDir
+        }
+    }
 }
