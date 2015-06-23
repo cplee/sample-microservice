@@ -145,6 +145,12 @@ task docker(type: Docker, dependsOn: build) {
   }
 }
 ```
+
+Then run:
+
+```
+gradle docker
+```
  
 
 Run it with:

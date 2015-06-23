@@ -56,7 +56,7 @@ task (type: Wrapper) {
 
 apply plugin: 'docker'
 
-taskb docker(type: Docker, dependsOn: build) {
+task docker(type: Docker, dependsOn: build) {
     push = false
     applicationName = jar.baseName
     dockerfile = file('src/main/docker/Dockerfile')
